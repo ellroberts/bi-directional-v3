@@ -42,7 +42,7 @@ export default function TopSection() {
         {/* Segment Dropdown (conditionally rendered) */}
         {isSegmentEligible && (
           <div>
-            <div className="text-sm font-medium mb-1">Customer Segment</div>
+            <div className="text-sm font-medium mb-1">Customer segment</div>
             <select
               defaultValue="commercial"
               className="border border-gray-300 rounded px-3 py-2 text-sm w-48"
