@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import { usePlan } from "./PlanContext";
 import { FaTrash } from "react-icons/fa";
@@ -22,10 +21,11 @@ export default function AddonTableRow({ option, index, groupId, isLast }) {
   const hasChanged = isQtyNumber && parsedQty !== committedQty;
 
   const handleSave = () => {
-    if (isValid) {
+    const newQty = parsedQty === 0 && !current ? 1 : parsedQty;
+    if (isQtyNumber && newQty >= minQty) {
       addOrUpdate(groupId, option.id, {
         ...option,
-        qty: parsedQty,
+        qty: newQty,
       });
     }
   };
@@ -35,7 +35,7 @@ export default function AddonTableRow({ option, index, groupId, isLast }) {
   };
 
   return (
-    <div className="grid grid-cols-6 lg:grid-cols-[40px_110px_90px_1fr_70px_70px] gap-2 px-4 gap-2 px-4 items-center text-sm py-3">
+    <div className="grid grid-cols-6 lg:grid-cols-[64px_110px_90px_1fr_70px_70px] gap-2 px-4 items-center text-sm py-3">
       <div>{index + 1}</div>
       <div>{option.term}</div>
       <div>{option.billing}</div>
@@ -99,13 +99,14 @@ export default function AddonTableRow({ option, index, groupId, isLast }) {
           </button>
         ) : (
           <button
-            className={`w-full h-[32px] text-sm px-2 rounded-md bg-white hover:bg-[#fdf0fa] ${
-              !isValid || parsedQty === 0
-                ? "border border-gray-300 text-gray-400 cursor-not-allowed"
-                : "border-2 border-[#A34796] text-[#A34796]"
+            className={`w-full h-[32px] text-sm px-2 rounded-md bg-white hover:bg-[#fdf0fa] border-2 ${
+              parsedQty === 0
+                ? "border-[#A34796] text-[#A34796]"
+                : isValid
+                ? "border-[#A34796] text-[#A34796]"
+                : "border border-gray-300 text-gray-400"
             }`}
             onClick={handleSave}
-            disabled={!isValid || parsedQty === 0}
           >
             Add
           </button>

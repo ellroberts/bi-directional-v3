@@ -40,3 +40,9 @@
 .read-the-docs {
   color: #888;
 }
+
+/* Tailwind plugin users can use @layer utilities if needed */
+.addon-grid-cols {
+  display: grid;
+  grid-template-columns: 40px 140px 100px 1fr 70px 70px;
+}
