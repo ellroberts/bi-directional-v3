@@ -17,7 +17,7 @@ export default function TypeMultiSelect() {
 
   return (
     <Popover.Root>
-      <Popover.Trigger className="flex h-10 w-[160px] items-center justify-between rounded-sm border border-gray-300 bg-white px-3 py-2 text-sm text-black focus:outline-none focus:ring-2 focus:ring-black disabled:cursor-not-allowed disabled:opacity-50">
+      <Popover.Trigger className="inline-flex items-center justify-between px-3 py-2 border bg-white rounded text-sm w-[160px]">
         <span>{selected.length > 0 ? `${selected.length} selected` : "Select"}</span>
         <FaChevronDown className="text-xs ml-1" />
       </Popover.Trigger>

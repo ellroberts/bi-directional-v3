@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import { usePlan } from "./PlanContext";
 import { FaTrash } from "react-icons/fa";
@@ -35,13 +34,15 @@ export default function AddonTableRow({ option, index, groupId, isLast }) {
   };
 
   return (
-    <div className="grid grid-cols-6 lg:grid-cols-[40px_110px_90px_1fr_70px_70px] gap-2 px-4 gap-2 px-4 items-center text-sm py-3">
-      <div>{index + 1}</div>
-      <div>{option.term}</div>
-      <div>{option.billing}</div>
+    <div
+      className={`flex items-center py-3 text-sm ${!isLast ? "border-b" : ""}`}
+    >
+      <div className="w-[72px] px-1">{index + 1}</div>
+      <div className="w-[80px] px-1">{option.term}</div>
+      <div className="w-[80px] px-1">{option.billing}</div>
 
       {/* Licence control */}
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-2 flex-grow px-1">
         <div className="flex items-center rounded-md border border-black overflow-hidden text-sm h-[32px]">
           <button
             disabled={!isQtyNumber || parsedQty <= minQty}
@@ -77,9 +78,9 @@ export default function AddonTableRow({ option, index, groupId, isLast }) {
         ) : null}
       </div>
 
-      <div className="text-left">£{option.price}</div>
+      <div className="w-[48px] ml-2 mr-4 text-left px-1">£{option.price}</div>
 
-      <div>
+      <div className="w-[88px] px-1">
         {current && hasChanged ? (
           <button
             className="w-full h-[32px] text-sm text-white px-2 rounded-md"
